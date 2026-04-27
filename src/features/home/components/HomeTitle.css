@@ -1,0 +1,56 @@
+/*
+  Home hero title
+  - This block isolates the narrow title area so it can be tuned independently.
+*/
+.home-hero-title {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  border: 2px solid var(--moai-line);
+  padding: var(--moai-panel-padding);
+  background: rgb(0 0 0 / 76%);
+  box-sizing: border-box;
+}
+
+.home-hero-title__tagline,
+.home-hero-title__note {
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+}
+
+.home-hero-title__tagline {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  color: var(--moai-accent);
+}
+
+.home-hero-title__main {
+  margin: 0;
+  font-family: 'Orbitron', 'Impact', 'Arial Narrow', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 7vw, 7.6rem);
+  letter-spacing: 0.06em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.home-hero-title__suffix {
+  display: block;
+  color: var(--moai-accent-alt);
+}
+
+.home-hero-title__lead {
+  max-width: 48ch;
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.42;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+}
+
+.home-hero-title__note {
+  margin: 0;
+  font-size: 0.84rem;
+  color: rgb(247 247 247 / 72%);
+}

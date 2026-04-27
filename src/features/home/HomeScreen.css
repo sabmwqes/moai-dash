@@ -1,0 +1,147 @@
+/*
+  Home screen design tokens
+  - Keep these variables grouped so color and spacing can be tuned quickly.
+*/
+:root {
+  --moai-bg: #000000;
+  --moai-text: #f7f7f7;
+  --moai-line: #ffffff;
+  --moai-accent: #00f0ff;
+  --moai-accent-alt: #ff3d00;
+  --moai-panel-gap: 22px;
+  --moai-panel-padding: 36px;
+  /* Grid ratio: left 40% (4) / right 60% (6) */
+  --moai-grid: minmax(640px, 0.4fr) minmax(600px, 0.6fr);
+}
+
+/*
+  Main layout
+  - Min-width intentionally keeps a horizontal dashboard shape.
+  - On smaller displays, body scrolls horizontally instead of stacking vertically.
+*/
+.home-screen {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--moai-grid);
+  gap: var(--moai-panel-gap);
+  min-width: 1120px;
+  min-height: 100vh;
+  padding: 24px;
+  color: var(--moai-text);
+  box-sizing: border-box;
+  background:
+    linear-gradient(135deg, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 96%) 70%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 63px,
+      rgb(255 255 255 / 7%) 64px
+    );
+}
+
+/*
+  Frame treatment
+  - Hard-edged panels, no border-radius by design requirement.
+*/
+.home-screen__panel {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--moai-line);
+  padding: var(--moai-panel-padding);
+  background: rgb(0 0 0 / 76%);
+  box-sizing: border-box;
+}
+
+.home-screen__panel--left {
+  /* Subdivide left panel into 70% title section and 30% button section */
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Button section: entire area is clickable */
+.home-screen__left-button-section {
+  flex: 0.3;
+  border: 2px solid var(--moai-line);
+  background: linear-gradient(90deg, var(--moai-accent) 0%, #ffffff 100%);
+  color: #000000;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--moai-panel-padding);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  box-sizing: border-box;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.home-screen__left-button-section:hover,
+.home-screen__left-button-section:focus-visible {
+  outline: none;
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 0 var(--moai-line);
+}
+
+.home-screen__panel--right {
+  gap: 22px;
+}
+
+/*
+  Utility menu buttons
+  - `--large` is emphasized for Encyclopedia as requested.
+*/
+.menu-button {
+  border: 1px solid var(--moai-line);
+  background: rgb(0 0 0 / 85%);
+  color: var(--moai-text);
+  text-align: left;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.menu-button:hover,
+.menu-button:focus-visible {
+  outline: none;
+  border-color: var(--moai-accent);
+  background: rgb(0 240 255 / 14%);
+}
+
+.menu-button--large {
+  min-height: 132px;
+  justify-content: center;
+  border-width: 2px;
+}
+
+.menu-button__label {
+  font-size: 1.44rem;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+}
+
+.menu-button--standard .menu-button__label {
+  font-size: 1.12rem;
+}
+
+.menu-button__description {
+  font-size: 0.8rem;
+  color: rgb(247 247 247 / 72%);
+  letter-spacing: 0.03em;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+}
+
+@media (max-height: 700px) {
+  .home-screen {
+    min-height: 700px;
+  }
+}
