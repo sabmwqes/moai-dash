@@ -42,17 +42,10 @@
 /*
   Frame treatment
   - Hard-edged panels, no border-radius by design requirement.
+  - .home-screen__section is a base for sections that need a framed panel look.
 */
-.home-screen__panel {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid var(--moai-line);
-  padding: var(--moai-panel-padding);
-  background: rgb(0 0 0 / 76%);
-  box-sizing: border-box;
-}
 
-.home-screen__panel--left {
+.home-screen__section--left {
   /* Subdivide left panel into 70% title section and 30% button section */
   display: flex;
   flex-direction: column;
@@ -88,20 +81,32 @@
   box-shadow: 6px 6px 0 0 var(--moai-line);
 }
 
-.home-screen__panel--right {
+/*
+  Right section
+  - Flex column that fills the full height.
+  - Each child button stretches to full width and shares height via flex weights.
+*/
+.home-screen__section--right {
+  display: flex;
+  flex-direction: column;
   gap: 22px;
+  box-sizing: border-box;
 }
 
 /*
   Utility menu buttons
-  - `--large` is emphasized for Encyclopedia as requested.
+  - Full width within the right section.
+  - Height is distributed by flex weight: large=4, standard=2.
 */
 .menu-button {
+  /* Default weight for standard items */
+  flex: 2;
   border: 1px solid var(--moai-line);
   background: rgb(0 0 0 / 85%);
   color: var(--moai-text);
   text-align: left;
-  padding: 14px 16px;
+  justify-content: center;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -116,21 +121,21 @@
   background: rgb(0 240 255 / 14%);
 }
 
+/* Large variant gets heavier flex weight */
 .menu-button--large {
-  min-height: 132px;
-  justify-content: center;
+  flex: 4;
   border-width: 2px;
 }
 
 .menu-button__label {
-  font-size: 1.44rem;
+  font-size: 1.8rem;
   letter-spacing: 0.09em;
   font-weight: 700;
   font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
 }
 
 .menu-button--standard .menu-button__label {
-  font-size: 1.12rem;
+  font-size: 1.44rem;
 }
 
 .menu-button__description {
