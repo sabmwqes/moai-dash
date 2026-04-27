@@ -1,0 +1,15 @@
+/*
+  App viewport wrapper
+  - Centralizes layout dimensions for all pages (home, game, encyclopedia, etc.).
+  - Height: always fits the viewport (100vh), no vertical overflow.
+  - Width: when viewport aspect ratio >= 4:3, uses full width (responsive).
+           when aspect ratio < 4:3, maintains 4:3 minimum and scrolls horizontally.
+  - Padding: outer gutter shared by all pages.
+*/
+.app-viewport {
+  height: 100vh;
+  /* Enforce minimum 4:3 aspect ratio relative to viewport height */
+  min-width: calc(100vh * 4 / 3);
+  padding: 20px;
+  box-sizing: border-box;
+}

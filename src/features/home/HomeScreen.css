@@ -11,7 +11,7 @@
   --moai-panel-gap: 22px;
   --moai-panel-padding: 36px;
   /* Grid ratio: left 40% (4) / right 60% (6) */
-  --moai-grid: minmax(640px, 0.4fr) minmax(600px, 0.6fr);
+  --moai-grid: 0.4fr 0.6fr;
 }
 
 /*
@@ -24,9 +24,9 @@
   display: grid;
   grid-template-columns: var(--moai-grid);
   gap: var(--moai-panel-gap);
-  min-width: 1120px;
-  min-height: 100vh;
-  padding: 24px;
+  /* Width and height are managed by the app-viewport wrapper */
+  width: 100%;
+  height: 100%;
   color: var(--moai-text);
   box-sizing: border-box;
   background:
@@ -140,8 +140,4 @@
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
 
-@media (max-height: 700px) {
-  .home-screen {
-    min-height: 700px;
-  }
-}
+

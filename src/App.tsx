@@ -1,7 +1,12 @@
 import { HomeScreen } from './features/home/HomeScreen'
+import './App.css'
 
 function App() {
-  return <HomeScreen />
+  return (
+    <div className="app-viewport">
+      <HomeScreen />
+    </div>
+  )
 }
 
 export default App
