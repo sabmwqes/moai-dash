@@ -12,6 +12,9 @@
   padding: var(--moai-panel-padding);
   background: rgb(0 0 0 / 76%);
   box-sizing: border-box;
+  /* Allow this flex child to shrink when the parent height is constrained */
+  min-height: 0;
+  overflow: hidden;
 }
 
 .home-hero-title__tagline,

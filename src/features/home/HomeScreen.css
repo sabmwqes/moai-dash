@@ -23,6 +23,10 @@
   position: relative;
   display: grid;
   grid-template-columns: var(--moai-grid);
+  /* Single row constrained to the available height — prevents children from
+     growing beyond the grid container. Required to make min-height: 0 work
+     on direct grid children. */
+  grid-template-rows: 1fr;
   gap: var(--moai-panel-gap);
   /* Width and height are managed by the app-viewport wrapper */
   width: 100%;
@@ -52,6 +56,9 @@
   gap: 22px;
   padding: 0;
   box-sizing: border-box;
+  /* min-height: 0 overrides the default min-height: auto on grid children,
+     allowing this flex container to shrink below its content height. */
+  min-height: 0;
 }
 
 /* Button section: entire area is clickable */
@@ -91,6 +98,8 @@
   flex-direction: column;
   gap: 22px;
   box-sizing: border-box;
+  /* Same as --left: allow this grid child to shrink below content height */
+  min-height: 0;
 }
 
 /*

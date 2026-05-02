@@ -17,12 +17,9 @@ body,
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow-y: hidden;
 }
 
 body {
   background: #000000;
-  /* Horizontal scroll when viewport is narrower than 4:3 */
-  overflow-x: auto;
-  /* Vertical content always fits viewport */
-  overflow-y: auto;
 }
