@@ -10,8 +10,8 @@
   --moai-accent-alt: #ff3d00;
   --moai-panel-gap: 22px;
   --moai-panel-padding: 36px;
-  /* Grid ratio: left 40% (4) / right 60% (6) */
-  --moai-grid: 0.4fr 0.6fr;
+  /* Grid ratio: left / right 50% (5) */
+  --moai-grid: 0.5fr 0.5fr;
 }
 
 /*
@@ -33,14 +33,6 @@
   height: 100%;
   color: var(--moai-text);
   box-sizing: border-box;
-  background:
-    linear-gradient(135deg, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 96%) 70%),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 63px,
-      rgb(255 255 255 / 7%) 64px
-    );
 }
 
 /*
