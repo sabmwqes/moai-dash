@@ -1,0 +1,341 @@
+/*
+  Battle screen layout
+  - Follows the same app-viewport convention as HomeScreen.
+  - Left 0.5fr / Right 0.5fr grid.
+  - Left: BattleMainPanel (5) + DiceSumPanel (5).
+  - Right: DicePanel (with roll + pairing) + SkillPanel + BattleLog + BattleStatus.
+*/
+
+/* Left/right column split */
+.battle-screen {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  gap: var(--moai-panel-gap);
+  width: 100%;
+  height: 100%;
+  color: var(--moai-text);
+  box-sizing: border-box;
+}
+
+/* --- Left column --- */
+.battle-screen__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--moai-panel-gap);
+  min-height: 0;
+}
+
+/* --- Right column --- */
+.battle-screen__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--moai-panel-gap);
+  min-height: 0;
+}
+
+/* --- Shared panel base --- */
+.battle-panel {
+  border: 2px solid var(--moai-line);
+  background: rgb(0 0 0 / 76%);
+  box-sizing: border-box;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* --- Left panels: main (5) + dice-sum (5) --- */
+.battle-panel--main {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.battle-panel--dice-sum {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* --- Right panels weight --- */
+/* DicePanel: dice display + pairing buttons + roll button */
+.battle-panel--dice {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+}
+
+/* Skills */
+.battle-panel--skills {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+/* Log */
+.battle-panel--log {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+/* Status bar (gold, exp, turn, etc.) */
+.battle-panel--status {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: rgb(247 247 247 / 72%);
+}
+
+/* --- Main panel internals --- */
+.battle-main__arena {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 0;
+}
+
+.battle-main__info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* --- Character display --- */
+.battle-char {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.battle-char__emoji {
+  font-size: 3rem;
+}
+
+.battle-char__name {
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* --- HP bar --- */
+.hp-bar {
+  width: 100%;
+  max-width: 180px;
+  height: 14px;
+  border: 1px solid var(--moai-line);
+  background: #000;
+  position: relative;
+}
+
+.hp-bar__fill {
+  height: 100%;
+  transition: width 200ms ease;
+}
+
+.hp-bar__label {
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: rgb(247 247 247 / 72%);
+}
+
+/* --- Enemy marker --- */
+.enemy-marker {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+}
+
+/* --- Dice sum table --- */
+.dice-sum-table {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.dice-sum-row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+  min-height: 0;
+}
+
+.dice-sum-row:last-child {
+  border-bottom: none;
+}
+
+.dice-sum-row__number {
+  width: 40px;
+  text-align: center;
+  font-family: 'Orbitron', 'Impact', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-right: 1px solid rgb(255 255 255 / 12%);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dice-sum-row__enemy {
+  flex: 1;
+  padding: 4px 8px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.dice-sum-row__player {
+  flex: 1;
+  padding: 4px 8px;
+  text-align: right;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 0.82rem;
+}
+
+/* --- Dice display --- */
+.dice-grid {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.die {
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--moai-line);
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', 'Impact', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.die__corner {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+}
+
+.die__corner--A { top: 4px; right: 4px; background: #00f0ff; }
+.die__corner--B { top: 4px; left: 4px; background: #00ff66; }
+.die__corner--C { bottom: 4px; left: 4px; background: #ffff00; }
+.die__corner--D { bottom: 4px; right: 4px; background: #ff00ff; }
+
+/* --- Pairing buttons --- */
+.pairing-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pairing-btn {
+  border: 1px solid var(--moai-line);
+  background: rgb(0 0 0 / 85%);
+  color: var(--moai-text);
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 0.82rem;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.pairing-btn:hover,
+.pairing-btn:focus-visible {
+  outline: none;
+  border-color: var(--moai-accent);
+  background: rgb(0 240 255 / 14%);
+}
+
+.pairing-btn--selected {
+  border-color: var(--moai-accent);
+  background: rgb(0 240 255 / 22%);
+  border-width: 2px;
+}
+
+/* --- Roll button --- */
+.roll-btn {
+  border: 2px solid var(--moai-line);
+  background: linear-gradient(90deg, var(--moai-accent) 0%, #ffffff 100%);
+  color: #000000;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.roll-btn:hover,
+.roll-btn:focus-visible {
+  outline: none;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--moai-line);
+}
+
+.roll-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Log entries --- */
+.log-entry {
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgb(247 247 247 / 72%);
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+  padding: 3px 0;
+}
+
+.log-entry__turn {
+  color: var(--moai-accent);
+  margin-right: 6px;
+}
+
+/* --- Status items --- */
+.status-item {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.status-item__label {
+  color: rgb(247 247 247 / 50%);
+}
+
+.status-item__value {
+  color: var(--moai-text);
+  font-weight: 600;
+}
