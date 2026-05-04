@@ -7,9 +7,9 @@ import type {
   LogEntry,
   DiceSum,
 } from '../../types/game'
-import { DAMAGE_TABLE } from '../../types/game'
+import { DAMAGE_TABLE, ENEMY_MARKERS } from '../../types/game'
 import { rollAllDice, placeEnemyActions, computeSums } from './battleUtils'
-import { RED_MOAI } from './data/enemies'
+import { ENEMY_REGISTRY } from './data/enemies'
 
 import { BattleMainPanel } from './components/BattleMainPanel'
 import { DiceSumPanel } from './components/DiceSumPanel'
@@ -21,12 +21,16 @@ import './BattleScreen.css'
 
 // ─── Initial state factory ───────────────────────────────────
 
+/** Player character icon: plain 🗿 (no color tint) */
+const PLAYER_ICON = { layers: [{ char: '🗿' }] }
+
 function createInitialEnemies(): EnemyInstance[] {
+  const data = ENEMY_REGISTRY['red_moai']
   return [
     {
-      data: RED_MOAI,
+      data,
       variants: [],
-      state: { currentHp: RED_MOAI.hp, statusEffects: [] },
+      state: { currentHp: data.hp, statusEffects: [] },
     },
   ]
 }
@@ -42,6 +46,7 @@ function createInitialState(): BattleState {
       statusEffects: [],
       dice: { A: null, B: null, C: null, D: null },
       skills: [],
+      icon: PLAYER_ICON,
     },
     enemies,
     turnNumber: 1,
@@ -125,12 +130,14 @@ function battleReducer(state: BattleState, action: BattleAction): BattleState {
             newLog.push({
               turn: state.turnNumber,
               message: `${enemy.data.name} deals ${t.value} to Player (sum ${placed.targetSum})`,
+              markerColor: ENEMY_MARKERS[placed.enemyIndex % ENEMY_MARKERS.length].color,
             })
           }
           if (t.kind === 'nullify') {
             newLog.push({
               turn: state.turnNumber,
               message: `${enemy.data.name} nullifies Player damage on sum ${placed.targetSum}`,
+              markerColor: ENEMY_MARKERS[placed.enemyIndex % ENEMY_MARKERS.length].color,
             })
           }
         }
@@ -220,6 +227,7 @@ export function BattleScreen({ onExit }: Props) {
           onRoll={handleRoll}
           onSelectPairing={handleSelectPairing}
           onConfirm={handleConfirm}
+          onExit={onExit}
         />
         <SkillPanel
           skills={state.player.skills}
@@ -235,12 +243,6 @@ export function BattleScreen({ onExit }: Props) {
           floorNumber={state.floorNumber}
         />
 
-        {/* Overlay buttons for end states */}
-        {(state.phase === 'victory' || state.phase === 'defeat') && (
-          <button type="button" className="roll-btn" onClick={onExit}>
-            {state.phase === 'victory' ? 'CONTINUE' : 'RETURN HOME'}
-          </button>
-        )}
       </div>
     </div>
   )

@@ -1,0 +1,97 @@
+/*
+  CharIcon — stacked emoji layer renderer
+  ----------------------------------------
+  Each icon is a relative container; layers inside are absolute-positioned
+  so they all share the same center point and can be composited freely.
+*/
+
+/* --- Root container --- */
+.char-icon {
+  /* Inline-block so it flows naturally in text or flex contexts */
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+  /* Prevent the container from collapsing; size driven by modifier */
+  flex-shrink: 0;
+}
+
+/* --- Size modifiers --- */
+.char-icon--sm  { width: 1.5rem;  height: 1.5rem;  font-size: 1.5rem; }
+.char-icon--md  { width: 2.5rem;  height: 2.5rem;  font-size: 2.5rem; }
+.char-icon--lg  { width: 3.5rem;  height: 3.5rem;  font-size: 3.5rem; }
+
+/* --- Mirror (for right-side characters) --- */
+.char-icon--mirrored {
+  transform: scaleX(-1);
+}
+
+/* --- Layer base --- */
+.char-icon__layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Prevent text cursor on emoji */
+  user-select: none;
+}
+
+/*
+  ── Tint filters ──────────────────────────────────────────────────────────────
+  CSS filter pipeline for coloring monochrome/grayscale emoji.
+  Pattern: sepia() converts to warm brown, then hue-rotate + saturate push
+  it toward the target hue. brightness() compensates for darkening.
+*/
+
+/* Red tint — warm crimson */
+.char-icon__layer--red-tint {
+  filter: sepia(1) saturate(6) hue-rotate(320deg) brightness(0.85);
+}
+
+/* Blue tint — cool electric blue */
+.char-icon__layer--blue-tint {
+  filter: sepia(1) saturate(6) hue-rotate(190deg) brightness(0.9);
+}
+
+/* Green tint */
+.char-icon__layer--green-tint {
+  filter: sepia(1) saturate(5) hue-rotate(80deg) brightness(0.9);
+}
+
+/* Gold / yellow tint */
+.char-icon__layer--gold-tint {
+  filter: sepia(1) saturate(6) hue-rotate(10deg) brightness(1.05);
+}
+
+/* Purple / dark tint */
+.char-icon__layer--purple-tint {
+  filter: sepia(1) saturate(5) hue-rotate(240deg) brightness(0.8);
+}
+
+/*
+  ── Overlay layer helpers ─────────────────────────────────────────────────────
+  For a second emoji placed on top of the base (e.g. a status effect icon).
+*/
+
+/* Scale down to ~40% — useful for small decorative overlay */
+.char-icon__layer--overlay-sm {
+  font-size: 0.4em;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+/* Offset to bottom-right corner */
+.char-icon__layer--badge-br {
+  font-size: 0.42em;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 0.05em 0.05em 0;
+}
+
+/* Offset to top-right corner */
+.char-icon__layer--badge-tr {
+  font-size: 0.42em;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.05em 0.05em 0 0;
+}

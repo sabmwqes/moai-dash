@@ -84,7 +84,26 @@
   display: flex;
   flex-direction: column;
   padding: 12px;
-  overflow-y: auto;
+  /* Always show scrollbar so layout stays stable */
+  overflow-y: scroll;
+}
+
+/* Custom scrollbar — follows black/cyan design */
+.battle-panel--log::-webkit-scrollbar {
+  width: 4px;
+}
+
+.battle-panel--log::-webkit-scrollbar-track {
+  background: #000;
+  border-left: 1px solid rgb(255 255 255 / 10%);
+}
+
+.battle-panel--log::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 22%);
+}
+
+.battle-panel--log::-webkit-scrollbar-thumb:hover {
+  background: var(--moai-accent);
 }
 
 /* Status bar (gold, exp, turn, etc.) */
@@ -192,6 +211,8 @@
   font-family: 'Orbitron', 'Impact', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
+  /* Border on both sides — sum column sits in the center */
+  border-left: 1px solid rgb(255 255 255 / 12%);
   border-right: 1px solid rgb(255 255 255 / 12%);
   align-self: stretch;
   display: flex;
@@ -206,12 +227,16 @@
   gap: 4px;
   flex-wrap: wrap;
   font-size: 0.78rem;
+  /* Enemy actions are right-aligned (attack from the right) */
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .dice-sum-row__player {
   flex: 1;
   padding: 4px 8px;
-  text-align: right;
+  /* Player damage left-aligned (attack from the left) */
+  text-align: left;
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-size: 0.82rem;
 }
@@ -252,8 +277,9 @@
 /* --- Pairing buttons --- */
 .pairing-buttons {
   display: flex;
-  gap: 8px;
-  justify-content: center;
+  /* Stack vertically so each button has room for mini dice */
+  flex-direction: column;
+  gap: 6px;
 }
 
 .pairing-btn {
@@ -262,9 +288,14 @@
   color: var(--moai-text);
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-size: 0.82rem;
-  padding: 8px 14px;
+  padding: 8px 12px;
   cursor: pointer;
   transition: border-color 120ms ease, background-color 120ms ease;
+  /* Row layout: mini dice on the left, sums on the right */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .pairing-btn:hover,
@@ -338,4 +369,122 @@
 .status-item__value {
   color: var(--moai-text);
   font-weight: 600;
+}
+
+/* ─── Additional styles ──────────────────────────────────── */
+
+/* --- Mirrored emoji (for right-side characters) --- */
+.battle-char__emoji--mirrored {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* --- Enemy name identifier marker --- */
+.battle-char__marker {
+  margin-right: 4px;
+}
+
+/* --- Dice sum table header --- */
+.dice-sum-header {
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 2px solid var(--moai-line);
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(247 247 247 / 40%);
+}
+
+.dice-sum-header__enemy {
+  flex: 1;
+  padding: 5px 8px;
+  text-align: right;
+}
+
+.dice-sum-header__sum {
+  width: 40px;
+  text-align: center;
+  padding: 5px 0;
+  border-left: 1px solid rgb(255 255 255 / 12%);
+  border-right: 1px solid rgb(255 255 255 / 12%);
+}
+
+.dice-sum-header__player {
+  flex: 1;
+  padding: 5px 8px;
+  text-align: left;
+}
+
+/* --- Active row highlight --- */
+.dice-sum-row--active {
+  background: rgb(0 240 255 / 10%);
+}
+
+/* Active player damage value — brighten */
+.dice-sum-row__player--active {
+  color: var(--moai-accent);
+  font-weight: 700;
+}
+
+/* --- Die letter label (A/B/C/D below face value) --- */
+.die__label {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.5rem;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.die__label--A { color: #00f0ff; }
+.die__label--B { color: #00ff66; }
+.die__label--C { color: #ffff00; }
+.die__label--D { color: #ff00ff; }
+
+/* --- Mini dice inside pairing buttons --- */
+.mini-die {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid currentColor;
+  font-family: 'Orbitron', 'Impact', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mini-die--A { color: #00f0ff; }
+.mini-die--B { color: #00ff66; }
+.mini-die--C { color: #ffff00; }
+.mini-die--D { color: #ff00ff; }
+
+/* Pairing button internal layout */
+.pairing-btn__dice {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.pairing-btn__sep {
+  opacity: 0.45;
+  margin: 0 2px;
+}
+
+.pairing-btn__sums {
+  margin-left: auto;
+  opacity: 0.85;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+/* --- Log marker (enemy color dot) --- */
+.log-entry__marker {
+  margin-right: 4px;
+  font-size: 0.7rem;
 }

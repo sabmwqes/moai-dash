@@ -20,6 +20,9 @@ export function BattleLog({ log }: Props) {
       {log.map((entry, i) => (
         <div className="log-entry" key={i}>
           <span className="log-entry__turn">T{entry.turn}</span>
+          {entry.markerColor && (
+            <span className="log-entry__marker" style={{ color: entry.markerColor }}>●</span>
+          )}
           {entry.message}
         </div>
       ))}

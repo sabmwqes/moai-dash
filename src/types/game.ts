@@ -35,14 +35,39 @@ export const DAMAGE_TABLE: Record<DiceSum, number> = {
   8: 100,
 }
 
+// --- Character icon ---
+
+import type { CSSProperties } from 'react'
+
+/**
+ * A single visual layer of a character icon.
+ * Layers are rendered bottom-to-top (first = back, last = front).
+ */
+export type EmojiLayer = {
+  /** The emoji string to display (can be multi-codepoint, e.g. 🧑‍🚀) */
+  char: string
+  /** BEM modifier class applied to this layer, e.g. 'char-icon__layer--red-tint' */
+  className?: string
+  /** Inline styles for one-off overrides (offset, rotation, scale, etc.) */
+  style?: CSSProperties
+}
+
+/**
+ * Serialisable icon definition — no JSX.
+ * Passed as data to <CharIcon> for actual rendering.
+ */
+export type CharacterIconDef = {
+  layers: EmojiLayer[]
+}
+
 // --- Enemy ---
 
 export type Rarity = 'normal' | 'rare' | 'epic'
 
 export type EnemyActionType =
   | { kind: 'damage'; value: number }
-  | { kind: 'status'; status: StatusEffect }
-  | { kind: 'damage_status'; value: number; status: StatusEffect }
+  | { kind: 'status'; statusId: StatusEffectId; turns: number }
+  | { kind: 'damage_status'; value: number; statusId: StatusEffectId; turns: number }
   | { kind: 'reduce'; factor: number }
   | { kind: 'nullify' }
 
@@ -57,7 +82,7 @@ export type EnemyAction = {
 
 export type EnemyData = {
   name: string
-  emoji: string
+  icon: CharacterIconDef
   hp: number
   /** Turn-based action patterns. Cycles through outer array each turn.
    *  Inner array = all actions the enemy performs in that turn. */
@@ -81,15 +106,29 @@ export type EnemyInstance = {
 
 export type EnemyState = {
   currentHp: number
-  statusEffects: StatusEffect[]
+  statusEffects: ActiveStatusEffect[]
 }
 
 // --- Status effects ---
 
-export type StatusEffect = {
-  id: string
+/** Display template for a status effect. Instance state is in ActiveStatusEffect. */
+export type StatusEffectDef = {
   name: string
   icon: string
+}
+
+/** Single source of truth for all status effect definitions */
+export const STATUS_REGISTRY = {
+  freeze: { name: 'Freeze', icon: '❄️' },
+  burn:   { name: 'Burn',   icon: '🔥' },
+  poison: { name: 'Poison', icon: '☠️' },
+} satisfies Record<string, StatusEffectDef>
+
+export type StatusEffectId = keyof typeof STATUS_REGISTRY
+
+/** A status effect currently active on a combatant */
+export type ActiveStatusEffect = {
+  id: StatusEffectId
   remainingTurns: number
 }
 
@@ -100,9 +139,10 @@ export type PlayerState = {
   currentHp: number
   maxMp: number
   currentMp: number
-  statusEffects: StatusEffect[]
+  statusEffects: ActiveStatusEffect[]
   dice: DiceState
   skills: Skill[]
+  icon: CharacterIconDef
 }
 
 export type Skill = {
@@ -172,6 +212,8 @@ export type LogEntry = {
   turn: number
   message: string
   detail?: string
+  /** Enemy identifier color for log display (hex string) */
+  markerColor?: string
 }
 
 // --- Page routing ---

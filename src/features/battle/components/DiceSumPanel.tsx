@@ -1,8 +1,11 @@
 import type { DiceSum, PlacedEnemyAction, DicePairing, DiceState } from '../../../types/game'
-import { DAMAGE_TABLE } from '../../../types/game'
+import { DAMAGE_TABLE, ENEMY_MARKERS, STATUS_REGISTRY } from '../../../types/game'
 import { computeSums } from '../battleUtils'
 
 const ALL_SUMS: DiceSum[] = [2, 3, 4, 5, 6, 7, 8]
+
+/** Unicode shapes matching ENEMY_MARKERS order */
+const MARKER_SYMBOLS = ['●', '▲', '■', '◆']
 
 type Props = {
   placedActions: PlacedEnemyAction[]
@@ -21,6 +24,13 @@ export function DiceSumPanel({ placedActions, selectedPairing, dice }: Props) {
 
   return (
     <div className="battle-panel battle-panel--dice-sum">
+      {/* Header: ENEMY ACTION | SUM | MY ACTION */}
+      <div className="dice-sum-header">
+        <div className="dice-sum-header__enemy">ENEMY ACTION</div>
+        <div className="dice-sum-header__sum">SUM</div>
+        <div className="dice-sum-header__player">MY ACTION</div>
+      </div>
+
       <div className="dice-sum-table">
         {ALL_SUMS.map((sum) => {
           const actions = placedActions.filter((a) => a.targetSum === sum)
@@ -28,20 +38,30 @@ export function DiceSumPanel({ placedActions, selectedPairing, dice }: Props) {
 
           return (
             <div
-              className="dice-sum-row"
+              className={`dice-sum-row${isActive ? ' dice-sum-row--active' : ''}`}
               key={sum}
-              style={isActive ? { background: 'rgb(0 240 255 / 10%)' } : undefined}
             >
-              <div className="dice-sum-row__number">{sum}</div>
+              {/* Enemy actions — right-aligned */}
               <div className="dice-sum-row__enemy">
-                {actions.map((a, i) => (
-                  <span key={i} style={{ color: 'var(--moai-accent-alt)' }}>
-                    {formatAction(a)}
-                  </span>
-                ))}
+                {actions.map((a, i) => {
+                  const marker = ENEMY_MARKERS[a.enemyIndex % ENEMY_MARKERS.length]
+                  const symbol = MARKER_SYMBOLS[a.enemyIndex % MARKER_SYMBOLS.length]
+                  return (
+                    <span key={i} style={{ color: marker.color }}>
+                      {symbol} {formatAction(a)}
+                    </span>
+                  )
+                })}
               </div>
+
+              {/* Sum number — center */}
+              <div className="dice-sum-row__number">{sum}</div>
+
+              {/* Player damage — left-aligned, always visible */}
               <div className="dice-sum-row__player">
-                {isActive ? DAMAGE_TABLE[sum] : '—'}
+                <span className={isActive ? 'dice-sum-row__player--active' : ''}>
+                  {DAMAGE_TABLE[sum]}
+                </span>
               </div>
             </div>
           )
@@ -56,9 +76,9 @@ function formatAction(a: PlacedEnemyAction): string {
     case 'damage':
       return `⚔${a.action.type.value}`
     case 'status':
-      return `${a.action.type.status.icon}`
+      return STATUS_REGISTRY[a.action.type.statusId].icon
     case 'damage_status':
-      return `⚔${a.action.type.value}+${a.action.type.status.icon}`
+      return `⚔${a.action.type.value}+${STATUS_REGISTRY[a.action.type.statusId].icon}`
     case 'reduce':
       return `↓${Math.round(a.action.type.factor * 100)}%`
     case 'nullify':
