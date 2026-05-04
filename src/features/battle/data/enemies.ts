@@ -15,6 +15,37 @@ import type { EnemyData } from '../../../types/game'
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const ENEMY_REGISTRY = {
+  test_moai:{
+    name: 'Test Moai',
+    icon: {
+      layers: [{ char: '🗿', className: 'char-icon__layer--red-tint' }],
+    },
+    hp: 300,
+    actions: [
+      [
+        { type: { kind: 'damage', value: 10 } },
+        { type: { kind: 'damage', value: 10 } },
+        { type: { kind: 'damage', value: 10 } },
+      ],
+      [
+        {
+          type: {
+            kind: 'damage_status',
+            value: 5,
+            statusId: 'freeze',
+            statusValue: 2,
+          },
+        },
+        {
+          type: {
+            kind: 'status',
+            value: 15,
+            statusId: 'freeze',
+          },
+        },
+      ]
+    ],
+  },
 
   red_moai: {
     name: 'Red Moai',

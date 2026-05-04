@@ -163,15 +163,15 @@ export type Skill = {
 // --- Enemy identifier markers ---
 
 export type EnemyMarker = {
-  shape: 'circle' | 'triangle' | 'square' | 'diamond'
+  symbol: string
   color: string
 }
 
 export const ENEMY_MARKERS: EnemyMarker[] = [
-  { shape: 'circle', color: '#00f0ff' },   // cyan
-  { shape: 'triangle', color: '#00ff66' },  // lime
-  { shape: 'square', color: '#ffff00' },    // yellow
-  { shape: 'diamond', color: '#ff00ff' },   // magenta
+  { symbol: '●', color: '#00f0ff' },  // cyan
+  { symbol: '▲', color: '#00ff66' },  // lime
+  { symbol: '■', color: '#ffff00' },  // yellow
+  { symbol: '◆', color: '#ff00ff' },  // magenta
 ]
 
 // --- Dice color per face ---
@@ -215,12 +215,14 @@ export type BattleState = {
   verboseLog: boolean
 }
 
+/** A text or enemy-reference segment within a log entry */
+export type LogSegment =
+  | { kind: 'text'; text: string }
+  | { kind: 'enemy'; enemyIndex: number; name: string }
+
 export type LogEntry = {
   turn: number
-  message: string
-  detail?: string
-  /** Enemy identifier color for log display (hex string) */
-  markerColor?: string
+  segments: LogSegment[]
 }
 
 // --- Page routing ---

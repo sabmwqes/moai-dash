@@ -3,9 +3,6 @@ import { ENEMY_MARKERS } from '../../../types/game'
 import { hpBarColor } from '../battleUtils'
 import { CharIcon } from './CharIcon'
 
-/** Unicode shapes matching ENEMY_MARKERS order */
-const MARKER_SYMBOLS = ['●', '▲', '■', '◆'] as const
-
 type Props = {
   player: PlayerState
   enemies: EnemyInstance[]
@@ -20,13 +17,12 @@ export function BattleMainPanel({ player, enemies }: Props) {
         {/* Enemies (left side) */}
         {aliveEnemies.map((enemy, i) => {
           const marker = ENEMY_MARKERS[i % ENEMY_MARKERS.length]
-          const symbol = MARKER_SYMBOLS[i % MARKER_SYMBOLS.length]
           return (
             <div className="battle-char" key={i}>
               <CharIcon icon={enemy.data.icon} size="lg" mirrored/>
               <span className="battle-char__name">
                 <span className="battle-char__marker" style={{ color: marker.color }}>
-                  {symbol}
+                  {marker.symbol}
                 </span>
                 {enemy.data.name}
               </span>

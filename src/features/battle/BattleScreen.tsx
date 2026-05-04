@@ -5,9 +5,10 @@ import type {
   EnemyInstance,
   TurnPhase,
   LogEntry,
+  LogSegment,
   DiceSum,
 } from '../../types/game'
-import { DAMAGE_TABLE, ENEMY_MARKERS } from '../../types/game'
+import { DAMAGE_TABLE } from '../../types/game'
 import { rollAllDice, placeEnemyActions, computeSums } from './battleUtils'
 import { ENEMY_REGISTRY } from './data/enemies'
 
@@ -23,6 +24,22 @@ import './BattleScreen.css'
 
 /** Player character icon: plain 🗿 (no color tint) */
 const PLAYER_ICON = { layers: [{ char: '🗿' }] }
+
+/**
+ * Builds a LogEntry from mixed text/number/enemy-ref parts.
+ * e.g. makeLog(turn, 'Dealt ', 40, ' to ', { enemyIndex: 0, name: 'Red Moai' })
+ */
+type LogPart = string | number | { enemyIndex: number; name: string }
+function makeLog(turn: number, ...parts: LogPart[]): LogEntry {
+  return {
+    turn,
+    segments: parts.map((p): LogSegment =>
+      typeof p === 'object'
+        ? { kind: 'enemy', enemyIndex: p.enemyIndex, name: p.name }
+        : { kind: 'text', text: String(p) }
+    ),
+  }
+}
 
 function createInitialEnemies(): EnemyInstance[] {
   const data = ENEMY_REGISTRY['red_moai']
@@ -57,7 +74,7 @@ function createInitialState(): BattleState {
     phase: 'rolling',
     selectedPairing: null,
     placedActions: placeEnemyActions(enemies, 0),
-    log: [{ turn: 0, message: 'Battle start!' }],
+    log: [makeLog(0, 'Battle start!')],
     verboseLog: false,
   }
 }
@@ -107,14 +124,16 @@ function battleReducer(state: BattleState, action: BattleAction): BattleState {
 
       for (const s of playerSums) {
         const damage = DAMAGE_TABLE[s]
-        // Damage all alive enemies for simplicity (single target: first alive)
-        const target = newEnemies.find((e) => e.state.currentHp > 0)
-        if (target) {
+        // Single target: first alive enemy
+        const targetIndex = newEnemies.findIndex((e) => e.state.currentHp > 0)
+        if (targetIndex !== -1) {
+          const target = newEnemies[targetIndex]
           target.state.currentHp = Math.max(0, target.state.currentHp - damage)
-          newLog.push({
-            turn: state.turnNumber,
-            message: `Player deals ${damage} to ${target.data.name} (sum ${s})`,
-          })
+          newLog.push(makeLog(state.turnNumber,
+            'Player deals ', damage, ' to ',
+            { enemyIndex: targetIndex, name: target.data.name },
+            ' (sum ', s, ')',
+          ))
         }
       }
 
@@ -127,18 +146,16 @@ function battleReducer(state: BattleState, action: BattleAction): BattleState {
           const t = placed.action.type
           if (t.kind === 'damage' || t.kind === 'damage_status') {
             newHp = Math.max(0, newHp - t.value)
-            newLog.push({
-              turn: state.turnNumber,
-              message: `${enemy.data.name} deals ${t.value} to Player (sum ${placed.targetSum})`,
-              markerColor: ENEMY_MARKERS[placed.enemyIndex % ENEMY_MARKERS.length].color,
-            })
+            newLog.push(makeLog(state.turnNumber,
+              { enemyIndex: placed.enemyIndex, name: enemy.data.name },
+              ' deals ', t.value, ' to Player (sum ', placed.targetSum, ')',
+            ))
           }
           if (t.kind === 'nullify') {
-            newLog.push({
-              turn: state.turnNumber,
-              message: `${enemy.data.name} nullifies Player damage on sum ${placed.targetSum}`,
-              markerColor: ENEMY_MARKERS[placed.enemyIndex % ENEMY_MARKERS.length].color,
-            })
+            newLog.push(makeLog(state.turnNumber,
+              { enemyIndex: placed.enemyIndex, name: enemy.data.name },
+              ' nullifies Player damage on sum ', placed.targetSum,
+            ))
           }
         }
       }
@@ -148,10 +165,10 @@ function battleReducer(state: BattleState, action: BattleAction): BattleState {
       let nextPhase: TurnPhase = 'rolling'
       if (allDead) {
         nextPhase = 'victory'
-        newLog.push({ turn: state.turnNumber, message: 'Victory!' })
+        newLog.push(makeLog(state.turnNumber, 'Victory!'))
       } else if (newHp <= 0) {
         nextPhase = 'defeat'
-        newLog.push({ turn: state.turnNumber, message: 'Defeated...' })
+        newLog.push(makeLog(state.turnNumber, 'Defeated...'))
       }
 
       const nextTurn = state.turnNumber + 1

@@ -1,4 +1,5 @@
 import type { LogEntry } from '../../../types/game'
+import { ENEMY_MARKERS } from '../../../types/game'
 import { useRef, useEffect } from 'react'
 
 type Props = {
@@ -20,10 +21,15 @@ export function BattleLog({ log }: Props) {
       {log.map((entry, i) => (
         <div className="log-entry" key={i}>
           <span className="log-entry__turn">T{entry.turn}</span>
-          {entry.markerColor && (
-            <span className="log-entry__marker" style={{ color: entry.markerColor }}>●</span>
-          )}
-          {entry.message}
+          {entry.segments.map((seg, j) => {
+            if (seg.kind === 'text') return <span key={j}>{seg.text}</span>
+            const marker = ENEMY_MARKERS[seg.enemyIndex % ENEMY_MARKERS.length]
+            return (
+              <span key={j} className="log-entry__enemy" style={{ color: marker.color }}>
+                {marker.symbol} {seg.name}
+              </span>
+            )
+          })}
         </div>
       ))}
       <div ref={bottomRef} />

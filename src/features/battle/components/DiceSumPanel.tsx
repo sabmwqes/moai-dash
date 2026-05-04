@@ -4,9 +4,6 @@ import { computeSums } from '../battleUtils'
 
 const ALL_SUMS: DiceSum[] = [2, 3, 4, 5, 6, 7, 8]
 
-/** Unicode shapes matching ENEMY_MARKERS order */
-const MARKER_SYMBOLS = ['●', '▲', '■', '◆']
-
 type Props = {
   placedActions: PlacedEnemyAction[]
   selectedPairing: DicePairing | null
@@ -45,10 +42,9 @@ export function DiceSumPanel({ placedActions, selectedPairing, dice }: Props) {
               <div className="dice-sum-row__enemy">
                 {actions.map((a, i) => {
                   const marker = ENEMY_MARKERS[a.enemyIndex % ENEMY_MARKERS.length]
-                  const symbol = MARKER_SYMBOLS[a.enemyIndex % MARKER_SYMBOLS.length]
                   return (
                     <span key={i} style={{ color: marker.color }}>
-                      {symbol} {formatAction(a)}
+                      {marker.symbol} {formatAction(a)}
                     </span>
                   )
                 })}
