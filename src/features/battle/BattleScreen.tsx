@@ -39,10 +39,10 @@ function createInitialState(): BattleState {
   const enemies = createInitialEnemies()
   return {
     player: {
-      maxHp: 500,
-      currentHp: 500,
-      maxMp: 100,
-      currentMp: 100,
+      maxHp: 50,
+      currentHp: 50,
+      maxMp: 20,
+      currentMp: 20,
       statusEffects: [],
       dice: { A: null, B: null, C: null, D: null },
       skills: [],

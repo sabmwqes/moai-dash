@@ -21,17 +21,17 @@ export const ENEMY_REGISTRY = {
     icon: {
       layers: [{ char: '🗿', className: 'char-icon__layer--red-tint' }],
     },
-    hp: 200,
+    hp: 20,
     actions: [
-      [{ type: { kind: 'damage', value: 30 } }],
       [
-        { type: { kind: 'damage', value: 20 } },
-        { type: { kind: 'damage', value: 20 } },
+        { type: { kind: 'damage', value: 5 } },
+        { type: { kind: 'damage', value: 5 } },
+        { type: { kind: 'damage', value: 5 } },
       ],
     ],
     exp: 10,
     gold: 5,
-    rarity: 'normal',
+    rarity: 'C',
   },
 
   blue_moai: {
@@ -39,24 +39,24 @@ export const ENEMY_REGISTRY = {
     icon: {
       layers: [{ char: '🗿', className: 'char-icon__layer--blue-tint' }],
     },
-    hp: 150,
+    hp: 20,
     actions: [
-      [{ type: { kind: 'damage', value: 25 } }],
       [
-        { type: { kind: 'damage', value: 15 } },
+        { type: { kind: 'damage', value: 5 } },
+        { type: { kind: 'damage', value: 5 } },
         {
           type: {
             kind: 'damage_status',
-            value: 10,
+            value: 5,
             statusId: 'freeze',
-            turns: 2,
+            statusValue: 2,
           },
         },
       ],
     ],
     exp: 15,
     gold: 8,
-    rarity: 'normal',
+    rarity: 'C',
   },
 
 } satisfies Record<string, EnemyData>
