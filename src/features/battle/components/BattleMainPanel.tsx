@@ -14,7 +14,7 @@ export function BattleMainPanel({ player, enemies }: Props) {
   return (
     <div className="battle-panel battle-panel--main">
       <div className="battle-main__arena">
-        {/* Enemies (left side) */}
+        {/* Enemies (left side - mirrored) */}
         {aliveEnemies.map((enemy, i) => {
           const marker = ENEMY_MARKERS[i % ENEMY_MARKERS.length]
           return (
@@ -45,9 +45,9 @@ export function BattleMainPanel({ player, enemies }: Props) {
         {/* VS */}
         <span style={{ fontFamily: 'Orbitron', fontSize: '1.4rem', opacity: 0.4 }}>VS</span>
 
-        {/* Player (right side — mirrored) */}
+        {/* Player (right side) */}
         <div className="battle-char">
-          <CharIcon icon={player.icon} size="lg" />
+          <CharIcon icon={player.icon} size="lg"/>
           <span className="battle-char__name">YOU</span>
           <div className="hp-bar">
             <div

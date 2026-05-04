@@ -90,6 +90,8 @@ export type EnemyData = {
   exp: number
   gold: number
   rarity: Rarity
+  /** Status effects the enemy starts the battle with */
+  initialStatusEffects?: ActiveStatusEffect[]
 }
 
 export type EnemyVariant = {

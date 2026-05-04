@@ -4,11 +4,24 @@ import type {
   DiceState,
   DiceSum,
   EnemyAction,
+  EnemyData,
   EnemyInstance,
   PlacedEnemyAction,
 } from '../../types/game'
 
 const ALL_SUMS: DiceSum[] = [2, 3, 4, 5, 6, 7, 8]
+
+/** Create a fresh EnemyInstance from EnemyData, applying initialStatusEffects if present */
+export function createEnemyInstance(data: EnemyData): EnemyInstance {
+  return {
+    data,
+    variants: [],
+    state: {
+      currentHp: data.hp,
+      statusEffects: data.initialStatusEffects ? [...data.initialStatusEffects] : [],
+    },
+  }
+}
 
 /** Roll a single die (1-4) */
 export function rollDie(): DiceFace {

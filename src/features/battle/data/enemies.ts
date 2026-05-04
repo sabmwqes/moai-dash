@@ -18,7 +18,10 @@ export const ENEMY_REGISTRY = {
   test_moai:{
     name: 'Test Moai',
     icon: {
-      layers: [{ char: '🗿', className: 'char-icon__layer--red-tint' }],
+      layers: [
+        { char: '🔧', className: 'char-icon__layer--holding' },
+        { char: '🗿' },
+      ],
     },
     hp: 300,
     actions: [
@@ -45,6 +48,9 @@ export const ENEMY_REGISTRY = {
         },
       ]
     ],
+    exp: 999,
+    gold: 999,
+    rarity: 'X',
   },
 
   red_moai: {

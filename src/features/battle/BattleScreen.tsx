@@ -9,7 +9,7 @@ import type {
   DiceSum,
 } from '../../types/game'
 import { DAMAGE_TABLE } from '../../types/game'
-import { rollAllDice, placeEnemyActions, computeSums } from './battleUtils'
+import { rollAllDice, placeEnemyActions, computeSums, createEnemyInstance } from './battleUtils'
 import { ENEMY_REGISTRY } from './data/enemies'
 
 import { BattleMainPanel } from './components/BattleMainPanel'
@@ -42,13 +42,8 @@ function makeLog(turn: number, ...parts: LogPart[]): LogEntry {
 }
 
 function createInitialEnemies(): EnemyInstance[] {
-  const data = ENEMY_REGISTRY['red_moai']
   return [
-    {
-      data,
-      variants: [],
-      state: { currentHp: data.hp, statusEffects: [] },
-    },
+    createEnemyInstance(ENEMY_REGISTRY['test_moai']),
   ]
 }
 

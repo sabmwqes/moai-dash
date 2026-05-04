@@ -29,11 +29,11 @@ export function CharIcon({ icon, size = 'md', mirrored = false, className }: Pro
 
   return (
     <span className={rootClass} aria-hidden="true">
-      {icon.layers.map((layer, i) => (
+      {icon.layers.slice().reverse().map((layer, i) => (
         <span
           key={i}
           className={['char-icon__layer', layer.className ?? ''].filter(Boolean).join(' ')}
-          style={layer.style}
+          style={{ zIndex: i, ...layer.style }}
         >
           {layer.char}
         </span>
