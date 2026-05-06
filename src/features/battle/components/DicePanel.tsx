@@ -18,6 +18,7 @@ type Props = {
   onSelectPairing: (p: DicePairing) => void
   onConfirm: () => void
   onExit: () => void
+  onHoverPairing: (p: DicePairing | null) => void
 }
 
 export function DicePanel({
@@ -28,6 +29,7 @@ export function DicePanel({
   onSelectPairing,
   onConfirm,
   onExit,
+  onHoverPairing,
 }: Props) {
   const pairings = dice.A !== null ? getAllPairings(dice) : []
 
@@ -64,6 +66,8 @@ export function DicePanel({
                 type="button"
                 className={`pairing-btn${selectedPairing === pairing ? ' pairing-btn--selected' : ''}`}
                 onClick={() => onSelectPairing(pairing)}
+                onMouseEnter={() => onHoverPairing(pairing)}
+                onMouseLeave={() => onHoverPairing(null)}
               >
                 {/* Mini dice grouped by pair */}
                 <span className="pairing-btn__dice">

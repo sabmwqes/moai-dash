@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from 'react'
+import { useReducer, useCallback, useState } from 'react'
 import type {
   BattleState,
   DicePairing,
@@ -44,6 +44,10 @@ function makeLog(turn: number, ...parts: LogPart[]): LogEntry {
 function createInitialEnemies(): EnemyInstance[] {
   return [
     createEnemyInstance(ENEMY_REGISTRY['test_moai']),
+    // createEnemyInstance(ENEMY_REGISTRY['test_moai']),
+    // createEnemyInstance(ENEMY_REGISTRY['test_moai']),
+    // createEnemyInstance(ENEMY_REGISTRY['test_moai']),
+
   ]
 }
 
@@ -206,6 +210,7 @@ type Props = {
 
 export function BattleScreen({ onExit }: Props) {
   const [state, dispatch] = useReducer(battleReducer, undefined, createInitialState)
+  const [hoveredPairing, setHoveredPairing] = useState<DicePairing | null>(null)
 
   const handleRoll = useCallback(() => dispatch({ type: 'roll_dice' }), [])
   const handleSelectPairing = useCallback(
@@ -226,6 +231,7 @@ export function BattleScreen({ onExit }: Props) {
         <DiceSumPanel
           placedActions={state.placedActions}
           selectedPairing={state.selectedPairing}
+          hoveredPairing={hoveredPairing}
           dice={state.player.dice}
         />
       </div>
@@ -240,6 +246,7 @@ export function BattleScreen({ onExit }: Props) {
           onSelectPairing={handleSelectPairing}
           onConfirm={handleConfirm}
           onExit={onExit}
+          onHoverPairing={setHoveredPairing}
         />
         <SkillPanel
           skills={state.player.skills}

@@ -7,16 +7,25 @@ const ALL_SUMS: DiceSum[] = [2, 3, 4, 5, 6, 7, 8]
 type Props = {
   placedActions: PlacedEnemyAction[]
   selectedPairing: DicePairing | null
+  hoveredPairing: DicePairing | null
   dice: DiceState
 }
 
-export function DiceSumPanel({ placedActions, selectedPairing, dice }: Props) {
+export function DiceSumPanel({ placedActions, selectedPairing, hoveredPairing, dice }: Props) {
   // Compute which sums are "active" from the selected pairing
   const activeSums = new Set<DiceSum>()
   if (selectedPairing && dice.A !== null) {
     const [s1, s2] = computeSums(dice, selectedPairing)
     activeSums.add(s1)
     activeSums.add(s2)
+  }
+
+  // Compute which sums are hovered (preview before selection)
+  const hoveredSums = new Set<DiceSum>()
+  if (hoveredPairing && dice.A !== null) {
+    const [h1, h2] = computeSums(dice, hoveredPairing)
+    hoveredSums.add(h1)
+    hoveredSums.add(h2)
   }
 
   return (
@@ -51,7 +60,7 @@ export function DiceSumPanel({ placedActions, selectedPairing, dice }: Props) {
               </div>
 
               {/* Sum number — center */}
-              <div className="dice-sum-row__number">{sum}</div>
+              <div className={`dice-sum-row__number${hoveredSums.has(sum) ? ' dice-sum-row__number--hovered' : ''}`}>{sum}</div>
 
               {/* Player damage — left-aligned, always visible */}
               <div className="dice-sum-row__player">

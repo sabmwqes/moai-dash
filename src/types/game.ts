@@ -170,10 +170,10 @@ export type EnemyMarker = {
 }
 
 export const ENEMY_MARKERS: EnemyMarker[] = [
-  { symbol: '●', color: '#00f0ff' },  // cyan
+  { symbol: '■', color: '#00f0ff' },  // cyan
   { symbol: '▲', color: '#00ff66' },  // lime
-  { symbol: '■', color: '#ffff00' },  // yellow
-  { symbol: '◆', color: '#ff00ff' },  // magenta
+  { symbol: '◆', color: '#ffff00' },  // yellow
+  { symbol: '▼', color: '#ff00ff' },  // magenta
 ]
 
 // --- Dice color per face ---
