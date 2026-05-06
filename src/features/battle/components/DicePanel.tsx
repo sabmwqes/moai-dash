@@ -40,16 +40,18 @@ export function DicePanel({
         {DIE_IDS.map((id) => {
           const value = dice[id]
           return (
-            <div className="die" key={id}>
-              <span className={`die__corner die__corner--${id}`} />
-              <span
-                className="die__value"
-                style={{ color: value ? DICE_FACE_COLORS[value as DiceFace] : 'var(--moai-text)' }}
-              >
-                {value ?? '?'}
-              </span>
-              {/* Letter label below the face value */}
+            <div className="die-wrapper" key={id}>
+              {/* Letter label above the die */}
               <span className={`die__label die__label--${id}`}>{id}</span>
+              <div className="die">
+                <span className={`die__corner die__corner--${id}`} />
+                <span
+                  className="die__value"
+                  style={{ color: value ? DICE_FACE_COLORS[value as DiceFace] : 'var(--moai-text)' }}
+                >
+                  {value ?? '?'}
+                </span>
+              </div>
             </div>
           )
         })}
@@ -84,29 +86,21 @@ export function DicePanel({
                   ))}
                 </span>
                 {/* Resulting sums */}
-                <span className="pairing-btn__sums">→ {sums[0]} + {sums[1]}</span>
+                <span className="pairing-btn__sums">{sums[0]} + {sums[1]}</span>
               </button>
             )
           })}
         </div>
       )}
 
-      {/* Primary action button — roll / confirm / end state */}
-      {phase === 'rolling' && (
-        <button type="button" className="roll-btn" onClick={onRoll}>
-          ROLL DICE
-        </button>
-      )}
-      {phase === 'pairing' && selectedPairing && (
-        <button type="button" className="roll-btn" onClick={onConfirm}>
-          CONFIRM
-        </button>
-      )}
-      {(phase === 'victory' || phase === 'defeat') && (
-        <button type="button" className="roll-btn" onClick={onExit}>
-          {phase === 'victory' ? 'CONTINUE' : 'RETURN HOME'}
-        </button>
-      )}
+      {/* Primary action button — always visible, disabled when not applicable */}
+      {(() => {
+        if (phase === 'rolling')  return <button type="button" className="roll-btn" onClick={onRoll}>ROLL DICE</button>
+        if (phase === 'pairing')  return <button type="button" className="roll-btn" onClick={onConfirm} disabled={!selectedPairing}>CONFIRM</button>
+        if (phase === 'victory')  return <button type="button" className="roll-btn" onClick={onExit}>CONTINUE</button>
+        if (phase === 'defeat')   return <button type="button" className="roll-btn" onClick={onExit}>RETURN HOME</button>
+        return <button type="button" className="roll-btn" disabled>—</button>
+      })()}
     </div>
   )
 }

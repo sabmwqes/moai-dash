@@ -23,7 +23,7 @@ export const ENEMY_REGISTRY = {
         { char: '🗿' },
       ],
     },
-    hp: 300,
+    hp: 100,
     actions: [
       [
         { type: { kind: 'damage', value: 10 } },
@@ -31,22 +31,10 @@ export const ENEMY_REGISTRY = {
         { type: { kind: 'damage', value: 10 } },
       ],
       [
-        {
-          type: {
-            kind: 'damage_status',
-            value: 5,
-            statusId: 'freeze',
-            statusValue: 2,
-          },
-        },
-        {
-          type: {
-            kind: 'status',
-            value: 15,
-            statusId: 'freeze',
-          },
-        },
-      ]
+        { type: { kind: 'damage', value: 20 } },
+        { type: { kind: 'damage', value: 10 } },
+        { type: { kind: 'damage', value: 5 } },
+      ],
     ],
     exp: 999,
     gold: 999,

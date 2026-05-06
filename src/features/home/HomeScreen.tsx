@@ -13,7 +13,7 @@ export function HomeScreen({ onStartGame }: HomeScreenProps) {
       <section className="home-screen__section--left">
         <HomeTitle />
         <button type="button" className="home-screen__left-button-section" onClick={onStartGame}>
-          START GAME
+          START GAME (WIP)
         </button>
       </section>
 

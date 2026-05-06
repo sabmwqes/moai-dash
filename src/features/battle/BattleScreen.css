@@ -282,6 +282,14 @@
   flex-wrap: wrap;
 }
 
+/* Wrapper: label above + die below */
+.die-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
 .die {
   width: 72px;
   height: 72px;
@@ -303,14 +311,9 @@
 .die__corner--C   { bottom: 4px; left: 4px;  background: #ffff00; }
 .die__corner--D   { bottom: 4px; right: 4px; background: #ff00ff; }
 
-/* Die letter label (A/B/C/D) */
+/* Die letter label (A/B/C/D) — rendered above the die in .die-wrapper */
 .die__label {
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -321,15 +324,16 @@
 .die__label--C { color: #ffff00; }
 .die__label--D { color: #ff00ff; }
 
-/* Pairing buttons */
+/* Pairing buttons — horizontal row, each button stacks content vertically */
 .pairing-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 6px;
 }
 
 .pairing-btn {
-  border: 1px solid var(--moai-line);
+  flex: 1;
+  border: 2px solid var(--moai-line);
   background: rgb(0 0 0 / 85%);
   color: var(--moai-text);
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
@@ -338,9 +342,9 @@
   cursor: pointer;
   transition: border-color 120ms ease, background-color 120ms ease;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  width: 100%;
+  gap: 6px;
 }
 
 .pairing-btn:hover,
@@ -353,7 +357,6 @@
 .pairing-btn--selected {
   border-color: var(--moai-accent);
   background: rgb(0 240 255 / 22%);
-  border-width: 2px;
 }
 
 /* Mini dice inside pairing buttons */
@@ -387,13 +390,16 @@
 }
 
 .pairing-btn__sums {
-  margin-left: auto;
   opacity: 0.85;
   font-size: 0.88rem;
   white-space: nowrap;
 }
 
-/* Roll / Confirm / Continue button */
+/* Roll / Confirm / Continue button — pinned to bottom of dice panel */
+.battle-panel--dice .roll-btn {
+  margin-top: auto;
+}
+
 .roll-btn {
   border: 2px solid var(--moai-line);
   background: linear-gradient(90deg, var(--moai-accent) 0%, #ffffff 100%);
