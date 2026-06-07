@@ -10,6 +10,7 @@
 export * from './dice'
 export * from './icon'
 export * from './status'
+export * from './rarity'
 export * from './enemy'
 export * from './player'
 export * from './battle'

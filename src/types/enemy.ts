@@ -5,8 +5,7 @@
 import type { DiceSum } from './dice'
 import type { CharacterIconDef } from './icon'
 import type { StatusEffectId, ActiveStatusEffect } from './status'
-
-export type Rarity = 'C' | 'B' | 'A' | 'S' | 'X'
+import type { Rarity } from './rarity'
 
 export type EnemyActionType =
   | { kind: 'damage'; value: number }
