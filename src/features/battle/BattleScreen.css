@@ -55,7 +55,7 @@
   flex: 5;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 1rem;
 }
 
 .battle-panel--dice-sum {
@@ -70,16 +70,16 @@
   flex: 5;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  gap: 12px;
+  padding: 1rem;
+  gap: 0.75rem;
 }
 
 .battle-panel--skills {
   flex: 2;
   display: flex;
   flex-direction: row;
-  gap: 8px;
-  padding: 12px;
+  gap: 0.5rem;
+  padding: 0.75rem;
   overflow-x: auto;
 }
 
@@ -87,7 +87,7 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 0.75rem;
   /* Always show scrollbar so layout stays stable */
   overflow-y: scroll;
 }
@@ -103,8 +103,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
-  padding: 8px 16px;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-size: 0.82rem;
   letter-spacing: 0.05em;
@@ -124,8 +124,8 @@
 .battle-main__info {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  padding-top: 8px;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
 }
 
 /* Character card */
@@ -133,7 +133,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .battle-char__emoji {
@@ -162,8 +162,8 @@
 /* HP bar */
 .hp-bar {
   width: 100%;
-  max-width: 180px;
-  height: 14px;
+  max-width: 11.25rem;
+  height: 0.875rem;
   border: 1px solid var(--moai-line);
   background: #000;
   position: relative;
@@ -194,9 +194,9 @@
   color: rgb(247 247 247 / 40%);
 }
 
-.dice-sum-header__enemy  { flex: 1; padding: 5px 8px; text-align: right; }
-.dice-sum-header__sum    { width: 40px; text-align: center; padding: 5px 0; border-left: 1px solid rgb(255 255 255 / 12%); border-right: 1px solid rgb(255 255 255 / 12%); }
-.dice-sum-header__player { flex: 1; padding: 5px 8px; text-align: left; }
+.dice-sum-header__enemy  { flex: 1; padding: 0.3125rem 0.5rem; text-align: right; }
+.dice-sum-header__sum    { width: 2.5rem; text-align: center; padding: 0.3125rem 0; border-left: 1px solid rgb(255 255 255 / 12%); border-right: 1px solid rgb(255 255 255 / 12%); }
+.dice-sum-header__player { flex: 1; padding: 0.3125rem 0.5rem; text-align: left; }
 
 /* Table */
 .dice-sum-table {
@@ -225,7 +225,7 @@
 
 /* Center sum number */
 .dice-sum-row__number {
-  width: 40px;
+  width: 2.5rem;
   text-align: center;
   font-family: 'Orbitron', 'Impact', sans-serif;
   font-weight: 700;
@@ -248,9 +248,9 @@
 /* Enemy actions — right-aligned */
 .dice-sum-row__enemy {
   flex: 1;
-  padding: 4px 8px;
+  padding: 0.25rem 0.5rem;
   display: flex;
-  gap: 4px;
+  gap: 0.25rem;
   flex-wrap: wrap;
   font-size: 0.78rem;
   justify-content: flex-end;
@@ -260,7 +260,7 @@
 /* Player damage — left-aligned, always visible */
 .dice-sum-row__player {
   flex: 1;
-  padding: 4px 8px;
+  padding: 0.25rem 0.5rem;
   text-align: left;
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-size: 0.82rem;
@@ -278,7 +278,7 @@
 .dice-grid {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -287,12 +287,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .die {
-  width: 72px;
-  height: 72px;
+  width: 4.5rem;
+  height: 4.5rem;
   border: 2px solid var(--moai-line);
   background: #000;
   display: flex;
@@ -305,11 +305,11 @@
 }
 
 /* Die corner color dots indicating die identity */
-.die__corner      { position: absolute; width: 6px; height: 6px; }
-.die__corner--A   { top: 4px;    right: 4px; background: #00f0ff; }
-.die__corner--B   { top: 4px;    left: 4px;  background: #00ff66; }
-.die__corner--C   { bottom: 4px; left: 4px;  background: #ffff00; }
-.die__corner--D   { bottom: 4px; right: 4px; background: #ff00ff; }
+.die__corner      { position: absolute; width: 0.375rem; height: 0.375rem; }
+.die__corner--A   { top: 0.25rem;    right: 0.25rem; background: #00f0ff; }
+.die__corner--B   { top: 0.25rem;    left: 0.25rem;  background: #00ff66; }
+.die__corner--C   { bottom: 0.25rem; left: 0.25rem;  background: #ffff00; }
+.die__corner--D   { bottom: 0.25rem; right: 0.25rem; background: #ff00ff; }
 
 /* Die letter label (A/B/C/D) — rendered above the die in .die-wrapper */
 .die__label {
@@ -328,7 +328,7 @@
 .pairing-buttons {
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .pairing-btn {
@@ -338,13 +338,13 @@
   color: var(--moai-text);
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-size: 0.82rem;
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
   cursor: pointer;
   transition: border-color 120ms ease, background-color 120ms ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .pairing-btn:hover,
@@ -364,8 +364,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
   border: 1px solid currentColor;
   font-family: 'Orbitron', 'Impact', sans-serif;
   font-size: 0.6rem;
@@ -381,12 +381,12 @@
 .pairing-btn__dice {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 0.1875rem;
 }
 
 .pairing-btn__sep {
   opacity: 0.45;
-  margin: 0 2px;
+  margin: 0 0.125rem;
 }
 
 .pairing-btn__sums {
@@ -409,7 +409,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: transform 140ms ease, box-shadow 140ms ease;
 }
@@ -417,8 +417,8 @@
 .roll-btn:hover,
 .roll-btn:focus-visible {
   outline: none;
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 0 var(--moai-line);
+  transform: translate(-0.125rem, -0.125rem);
+  box-shadow: 0.25rem 0.25rem 0 0 var(--moai-line);
 }
 
 .roll-btn:disabled {
@@ -436,12 +436,12 @@
   line-height: 1.5;
   color: rgb(247 247 247 / 72%);
   border-bottom: 1px solid rgb(255 255 255 / 6%);
-  padding: 3px 0;
+  padding: 0.1875rem 0;
 }
 
 .log-entry__turn {
   color: var(--moai-accent);
-  margin-right: 6px;
+  margin-right: 0.375rem;
 }
 
 /* Enemy name reference (colored by marker) */
@@ -454,7 +454,7 @@
 
 .status-item {
   display: flex;
-  gap: 4px;
+  gap: 0.25rem;
   align-items: center;
 }
 

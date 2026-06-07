@@ -8,8 +8,8 @@
   --moai-line: #ffffff;
   --moai-accent: #00f0ff;
   --moai-accent-alt: #ff3d00;
-  --moai-panel-gap: 22px;
-  --moai-panel-padding: 36px;
+  --moai-panel-gap: 1.375rem;
+  --moai-panel-padding: 2.25rem;
   /* Grid ratio: left / right 50% (5) */
   --moai-grid: 0.5fr 0.5fr;
 }
@@ -45,7 +45,7 @@
   /* Subdivide left panel into 70% title section and 30% button section */
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: var(--moai-panel-gap);
   padding: 0;
   box-sizing: border-box;
   /* min-height: 0 overrides the default min-height: auto on grid children,
@@ -76,8 +76,8 @@
 .home-screen__left-button-section:hover,
 .home-screen__left-button-section:focus-visible {
   outline: none;
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 0 var(--moai-line);
+  transform: translate(-0.1875rem, -0.1875rem);
+  box-shadow: 0.375rem 0.375rem 0 0 var(--moai-line);
 }
 
 /*
@@ -88,7 +88,7 @@
 .home-screen__section--right {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: var(--moai-panel-gap);
   box-sizing: border-box;
   /* Same as --left: allow this grid child to shrink below content height */
   min-height: 0;
@@ -107,10 +107,10 @@
   color: var(--moai-text);
   text-align: left;
   justify-content: center;
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   cursor: pointer;
   transition: border-color 120ms ease, background-color 120ms ease;
 }

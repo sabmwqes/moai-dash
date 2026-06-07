@@ -20,7 +20,7 @@
   /* Enforce minimum 4:3 aspect ratio relative to viewport height */
   min-width: calc(100vh * 4 / 3);
   min-width: calc(100dvh * 4 / 3);
-  padding: 20px;
+  padding: 1.25rem;
   box-sizing: border-box;
   /* Horizontal scroll when viewport is narrower than 4:3, never vertical */
   overflow-x: auto;

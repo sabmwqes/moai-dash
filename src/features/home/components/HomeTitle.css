@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 22px;
+  gap: var(--moai-panel-gap);
   border: 2px solid var(--moai-line);
   padding: var(--moai-panel-padding);
   background: rgb(0 0 0 / 76%);
