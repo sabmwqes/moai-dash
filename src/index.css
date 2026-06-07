@@ -8,6 +8,19 @@
 }
 
 /*
+  Responsive root font size.
+  - 2.0dvh scales with viewport height, matching the 4:3 min-width layout
+    (min-width = 100dvh × 4/3), so all rem values shrink proportionally on
+    small screens without touching individual declarations.
+  - clamp floor (10px) prevents text from becoming unreadably small.
+  - clamp ceiling (18px) prevents oversized text on very tall monitors.
+  - 16px at ~889px tall ≈ standard desktop design reference.
+*/
+html {
+  font-size: clamp(9px, 2.0dvh, 18px);
+}
+
+/*
   Root sizing convention:
   - Height uses 100dvh (dynamic viewport height) which accounts for mobile
     browser chrome (address bar, tab bar). Fallback to 100vh for older browsers.
