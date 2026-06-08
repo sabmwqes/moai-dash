@@ -41,10 +41,11 @@ export function DiceSumPanel({ placedActions, selectedPairing, hoveredPairing, d
         {ALL_SUMS.map((sum) => {
           const actions = placedActions.filter((a) => a.targetSum === sum)
           const isActive = activeSums.has(sum)
+          const isHovered = hoveredSums.has(sum)
 
           return (
             <div
-              className={`dice-sum-row${isActive ? ' dice-sum-row--active' : ''}`}
+              className={`dice-sum-row${isHovered ? ' dice-sum-row--active' : ''}`}
               key={sum}
             >
               {/* Enemy actions — right-aligned */}
@@ -60,7 +61,7 @@ export function DiceSumPanel({ placedActions, selectedPairing, hoveredPairing, d
               </div>
 
               {/* Sum number — center */}
-              <div className={`dice-sum-row__number${hoveredSums.has(sum) ? ' dice-sum-row__number--hovered' : ''}`}>{sum}</div>
+              <div className={`dice-sum-row__number${isActive ? ' dice-sum-row__number--hovered' : ''}`}>{sum}</div>
 
               {/* Player damage — left-aligned, always visible */}
               <div className="dice-sum-row__player">
