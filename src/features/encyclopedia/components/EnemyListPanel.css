@@ -1,0 +1,129 @@
+/*
+  EnemyListPanel — 敵一覧パネル（ツールバー + グリッド/リスト）
+*/
+
+.enemy-list-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+/* --- ツールバー --- */
+.enemy-list-panel__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #444;
+  flex-wrap: wrap;
+}
+
+.enemy-list-panel__toolbar-label {
+  font-size: 0.65rem;
+  color: #888;
+  margin-right: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+/* ソートselect */
+.enemy-list-panel__sort {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.enemy-list-panel__select {
+  background: #111;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* レア度フィルタボタン群 */
+.enemy-list-panel__filter {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.enemy-list-panel__rarity-buttons {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.enemy-list-panel__rarity-btn {
+  width: 1.4rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.enemy-list-panel__rarity-btn--active {
+  background: #1a1a1a;
+}
+
+/* 表示切替 */
+.enemy-list-panel__view-toggle {
+  display: flex;
+  gap: 0.2rem;
+  margin-left: auto;
+}
+
+.enemy-list-panel__view-btn {
+  background: transparent;
+  border: 1px solid #555;
+  color: #555;
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enemy-list-panel__view-btn--active {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* --- コンテンツエリア --- */
+.enemy-list-panel__content {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #333;
+  padding: 0.5rem;
+}
+
+/* グリッド表示 */
+.enemy-list-panel__content--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  gap: 0.4rem;
+  align-content: start;
+}
+
+/* リスト表示 */
+.enemy-list-panel__content--list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.enemy-list-panel__empty {
+  color: #666;
+  text-align: center;
+  font-size: 0.85rem;
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,63 @@
+/*
+  EnemyCard — 敵一覧用カード（グリッド/リスト両対応）
+*/
+
+.enemy-card {
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.1s, background 0.1s;
+}
+
+.enemy-card:hover {
+  background: #1a1a1a;
+  border-color: #888;
+}
+
+.enemy-card--selected {
+  background: #1a1a1a;
+}
+
+/* --- グリッド表示 --- */
+.enemy-card--grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.enemy-card--grid .enemy-card__name {
+  font-size: 0.6rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* --- リスト表示 --- */
+.enemy-card--list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  width: 100%;
+}
+
+.enemy-card--list .enemy-card__name {
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+.enemy-card__rarity {
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.enemy-card__hp {
+  font-size: 0.7rem;
+  color: #aaa;
+}

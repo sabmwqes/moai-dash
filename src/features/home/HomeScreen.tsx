@@ -5,9 +5,10 @@ import './HomeScreen.css'
 
 type HomeScreenProps = {
   onStartGame: () => void
+  onOpenEncyclopedia: () => void
 }
 
-export function HomeScreen({ onStartGame }: HomeScreenProps) {
+export function HomeScreen({ onStartGame, onOpenEncyclopedia }: HomeScreenProps) {
   return (
     <main className="home-screen" aria-label="MOAI DASH home screen">
       <section className="home-screen__section--left">
@@ -24,6 +25,7 @@ export function HomeScreen({ onStartGame }: HomeScreenProps) {
             label={item.label}
             description={item.description}
             variant={item.variant}
+            onClick={item.id === 'encyclopedia' ? onOpenEncyclopedia : undefined}
           />
         ))}
       </section>

@@ -1,0 +1,138 @@
+/*
+  EnemyDetailPanel — 敵詳細表示パネル
+*/
+
+.enemy-detail-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #555;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.enemy-detail-panel--empty {
+  justify-content: center;
+}
+
+.enemy-detail-panel__placeholder {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* レア度ラベル */
+.enemy-detail-panel__rarity {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* アイコン表示エリア */
+.enemy-detail-panel__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid #444;
+  font-size: 3.5rem;
+}
+
+/* 名前 */
+.enemy-detail-panel__name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 説明文 */
+.enemy-detail-panel__description {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #aaa;
+  text-align: center;
+  max-width: 20rem;
+}
+
+/* ステータス行 */
+.enemy-detail-panel__stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.enemy-detail-panel__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.enemy-detail-panel__stat-label {
+  font-size: 0.65rem;
+  color: #888;
+}
+
+.enemy-detail-panel__stat-value {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* スキルセクション */
+.enemy-detail-panel__skills {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #333;
+}
+
+.enemy-detail-panel__skills-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.7rem;
+  color: #888;
+  letter-spacing: 0.05em;
+}
+
+.enemy-detail-panel__skill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0;
+}
+
+.enemy-detail-panel__skill-icon {
+  font-size: 1rem;
+}
+
+.enemy-detail-panel__skill-text {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.enemy-detail-panel__status-icon {
+  font-size: 1.2rem;
+}
+
+.enemy-detail-panel__no-actions {
+  color: #666;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* 発見状態プレースホルダ */
+.enemy-detail-panel__discovery-status {
+  margin-top: auto;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #4f4;
+  text-align: center;
+}
+
+.enemy-detail-panel__discovery-label {
+  font-size: 0.75rem;
+  color: #4f4;
+  letter-spacing: 0.1em;
+}

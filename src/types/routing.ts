@@ -2,4 +2,4 @@
 // Page routing types
 // ============================================================
 
-export type PageId = 'home' | 'battle'
+export type PageId = 'home' | 'battle' | 'encyclopedia'

@@ -1,7 +1,7 @@
 import type { PlayerState, EnemyInstance } from '../../../types/game'
 import { ENEMY_MARKERS } from '../../../types/game'
 import { hpBarColor } from '../battleUtils'
-import { CharIcon } from './CharIcon'
+import { CharIcon } from '../../../components/CharIcon'
 
 type Props = {
   player: PlayerState

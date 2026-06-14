@@ -1,4 +1,4 @@
-import type { CharacterIconDef } from '../../../types/game'
+import type { CharacterIconDef } from '../types/game'
 import './CharIcon.css'
 
 type Size = 'sm' | 'md' | 'lg'
