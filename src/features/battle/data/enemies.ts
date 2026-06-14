@@ -18,6 +18,7 @@ export const ENEMY_REGISTRY = {
   // Test moai - for testing and demonstration purposes, not meant to be a real enemy
   test_moai:{
     name: 'Test Moai',
+    description: 'A moai used for testing and demonstration purposes. Not meant to be a real enemy.',
     icon: {
       layers: [
         { char: '🔧', className: 'char-icon__layer--holding' },
@@ -44,6 +45,7 @@ export const ENEMY_REGISTRY = {
   // Red Moai - red-tinted moai
   red_moai: {
     name: 'Red Moai',
+    description: 'A red-tinted moai.',
     icon: {
       layers: [{ char: '🗿', className: 'char-icon__layer--red-tint' }],
     },
@@ -59,9 +61,10 @@ export const ENEMY_REGISTRY = {
     gold: 5,
     rarity: 'C',
   },
-  // Blue Moai - blue-tinted moai with a freeze attack
+  // Blue Moai - blue-tinted moai
   blue_moai: {
     name: 'Blue Moai',
+    description: 'A blue-tinted moai.',
     icon: {
       layers: [{ char: '🗿', className: 'char-icon__layer--blue-tint' }],
     },

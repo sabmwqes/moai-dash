@@ -25,6 +25,7 @@ export type EnemyAction = {
 
 export type EnemyData = {
   name: string
+  description: string
   icon: CharacterIconDef
   hp: number
   /** Turn-based action patterns. Cycles through outer array each turn.
