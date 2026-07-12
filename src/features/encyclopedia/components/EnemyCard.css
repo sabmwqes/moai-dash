@@ -3,21 +3,21 @@
 */
 
 .enemy-card {
-  background: #111;
-  border: 1px solid #333;
-  color: #fff;
+  background: transparent;
+  border: 1px solid var(--moai-line);
+  color: var(--moai-text);
   cursor: pointer;
   font-family: inherit;
-  transition: border-color 0.1s, background 0.1s;
+  transition: border-color 120ms ease, background-color 120ms ease;
 }
 
 .enemy-card:hover {
-  background: #1a1a1a;
-  border-color: #888;
+  border-color: var(--moai-accent);
+  background: rgb(0 240 255 / 8%);
 }
 
 .enemy-card--selected {
-  background: #1a1a1a;
+  background: rgb(0 240 255 / 14%);
 }
 
 /* --- グリッド表示 --- */
@@ -36,6 +36,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
 
 /* --- リスト表示 --- */
@@ -50,14 +51,19 @@
 .enemy-card--list .enemy-card__name {
   font-size: 0.8rem;
   flex: 1;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .enemy-card__rarity {
   font-size: 0.7rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
 }
 
 .enemy-card__hp {
   font-size: 0.7rem;
-  color: #aaa;
+  color: rgb(247 247 247 / 72%);
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }

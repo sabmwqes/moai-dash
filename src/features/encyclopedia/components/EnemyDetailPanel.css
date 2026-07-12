@@ -7,10 +7,11 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem;
-  border: 1px solid #555;
+  padding: var(--moai-panel-padding);
+  border: 2px solid var(--moai-line);
   flex: 1;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .enemy-detail-panel--empty {
@@ -18,16 +19,19 @@
 }
 
 .enemy-detail-panel__placeholder {
-  color: #666;
+  color: rgb(247 247 247 / 50%);
   font-size: 1rem;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.08em;
 }
 
 /* レア度ラベル */
 .enemy-detail-panel__rarity {
   font-size: 0.75rem;
-  font-weight: bold;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
 }
 
 /* アイコン表示エリア */
@@ -37,25 +41,28 @@
   justify-content: center;
   width: 5rem;
   height: 5rem;
-  border: 1px solid #444;
+  border: 1px solid var(--moai-line);
   font-size: 3.5rem;
 }
 
 /* 名前 */
 .enemy-detail-panel__name {
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.4rem;
+  font-weight: 700;
   text-align: center;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.05em;
 }
 
 /* 説明文 */
 .enemy-detail-panel__description {
   margin: 0;
   font-size: 0.8rem;
-  color: #aaa;
+  color: rgb(247 247 247 / 72%);
   text-align: center;
   max-width: 20rem;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
 
 /* ステータス行 */
@@ -74,12 +81,15 @@
 
 .enemy-detail-panel__stat-label {
   font-size: 0.65rem;
-  color: #888;
+  color: rgb(247 247 247 / 50%);
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  letter-spacing: 0.03em;
 }
 
 .enemy-detail-panel__stat-value {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
 }
 
 /* スキルセクション */
@@ -87,14 +97,15 @@
   width: 100%;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--moai-line);
 }
 
 .enemy-detail-panel__skills-title {
   margin: 0 0 0.25rem 0;
   font-size: 0.7rem;
-  color: #888;
-  letter-spacing: 0.05em;
+  color: rgb(247 247 247 / 50%);
+  letter-spacing: 0.08em;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
 
 .enemy-detail-panel__skill-row {
@@ -110,7 +121,8 @@
 
 .enemy-detail-panel__skill-text {
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
 }
 
 .enemy-detail-panel__status-icon {
@@ -118,21 +130,23 @@
 }
 
 .enemy-detail-panel__no-actions {
-  color: #666;
+  color: rgb(247 247 247 / 50%);
   font-size: 0.8rem;
   margin: 0;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
 
 /* 発見状態プレースホルダ */
 .enemy-detail-panel__discovery-status {
   margin-top: auto;
   padding: 0.4rem 0.8rem;
-  border: 1px solid #4f4;
+  border: 1px solid var(--moai-accent);
   text-align: center;
 }
 
 .enemy-detail-panel__discovery-label {
   font-size: 0.75rem;
-  color: #4f4;
+  color: var(--moai-accent);
   letter-spacing: 0.1em;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }

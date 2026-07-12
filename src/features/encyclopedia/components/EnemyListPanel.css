@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 0.5rem;
+  gap: var(--moai-panel-gap);
 }
 
 /* --- ツールバー --- */
@@ -14,16 +14,17 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.4rem 0.5rem;
-  border: 1px solid #444;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--moai-line);
   flex-wrap: wrap;
 }
 
 .enemy-list-panel__toolbar-label {
   font-size: 0.65rem;
-  color: #888;
+  color: rgb(247 247 247 / 50%);
   margin-right: 0.25rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
 
 /* ソートselect */
@@ -34,12 +35,12 @@
 }
 
 .enemy-list-panel__select {
-  background: #111;
-  color: #fff;
-  border: 1px solid #555;
+  background: #000;
+  color: var(--moai-text);
+  border: 1px solid var(--moai-line);
   padding: 0.2rem 0.4rem;
   font-size: 0.75rem;
-  font-family: inherit;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   cursor: pointer;
 }
 
@@ -64,13 +65,14 @@
   background: transparent;
   border: 1px solid;
   font-size: 0.7rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
   cursor: pointer;
-  transition: opacity 0.1s;
+  transition: border-color 120ms ease, background-color 120ms ease;
 }
 
 .enemy-list-panel__rarity-btn--active {
-  background: #1a1a1a;
+  background: rgb(0 240 255 / 8%);
 }
 
 /* 表示切替 */
@@ -82,8 +84,8 @@
 
 .enemy-list-panel__view-btn {
   background: transparent;
-  border: 1px solid #555;
-  color: #555;
+  border: 1px solid var(--moai-line);
+  color: rgb(247 247 247 / 40%);
   width: 1.6rem;
   height: 1.6rem;
   font-size: 1rem;
@@ -91,18 +93,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border-color 120ms ease, color 120ms ease;
 }
 
 .enemy-list-panel__view-btn--active {
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--moai-accent);
+  color: var(--moai-text);
 }
 
 /* --- コンテンツエリア --- */
 .enemy-list-panel__content {
   flex: 1;
   overflow-y: auto;
-  border: 1px solid #333;
+  border: 2px solid var(--moai-line);
   padding: 0.5rem;
 }
 
@@ -122,8 +125,9 @@
 }
 
 .enemy-list-panel__empty {
-  color: #666;
+  color: rgb(247 247 247 / 50%);
   text-align: center;
   font-size: 0.85rem;
   grid-column: 1 / -1;
+  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
 }
