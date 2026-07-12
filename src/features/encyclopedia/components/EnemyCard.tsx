@@ -38,12 +38,13 @@ export function EnemyCard({ enemy, selected, viewMode, onClick }: Props) {
       style={{ borderColor: selected ? rarityDef?.color : undefined }}
       onClick={onClick}
     >
-      <CharIcon icon={enemy.icon} size="sm" />
-      <span className="enemy-card__name">{enemy.name}</span>
+      <span className="enemy-card__icon-wrap">
+        <CharIcon icon={enemy.icon} size="sm" />
+      </span>
       <span className="enemy-card__rarity" style={{ color: rarityDef?.color }}>
         {enemy.rarity}
       </span>
-      <span className="enemy-card__hp">HP {enemy.hp}</span>
+      <span className="enemy-card__name">{enemy.name}</span>
     </button>
   )
 }

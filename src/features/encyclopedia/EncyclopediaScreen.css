@@ -34,16 +34,32 @@
 
 /* --- 戻るボタン --- */
 .encyclopedia-screen__back-btn {
-  align-self: flex-start;
-  padding: 0.4rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  height: 2.75rem;
+  box-sizing: border-box;
   background: transparent;
   color: var(--moai-text);
-  border: 1px solid var(--moai-line);
+  border: 2px solid var(--moai-line);
   font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+/* CSSで左向き三角形を描画 */
+.encyclopedia-screen__back-btn::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 0.35rem solid transparent;
+  border-bottom: 0.35rem solid transparent;
+  border-right: 0.5rem solid currentColor;
+  flex-shrink: 0;
 }
 
 .encyclopedia-screen__back-btn:hover,

@@ -9,7 +9,7 @@ export const SPECIAL_ENEMIES = {
   // Test moai - for testing and demonstration purposes, not meant to be a real enemy
   test_moai: {
     name: 'Test Moai',
-    description: 'A moai used for testing and demonstration purposes. Not meant to be a real enemy.',
+    description: 'A test moai for development.',
     icon: {
       layers: [
         { char: '🔧', className: 'char-icon__layer--holding' },

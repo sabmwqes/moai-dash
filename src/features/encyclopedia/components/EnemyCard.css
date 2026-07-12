@@ -43,27 +43,36 @@
 .enemy-card--list {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0;
   padding: 0.3rem 0.5rem;
   width: 100%;
 }
 
+/* アイコンを固定幅で確保 */
+.enemy-card__icon-wrap {
+  flex-shrink: 0;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* レア度: 固定幅で左端に配置 */
+.enemy-card__rarity {
+  flex-shrink: 0;
+  width: 1.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
+  text-align: center;
+}
+
 .enemy-card--list .enemy-card__name {
-  font-size: 0.8rem;
   flex: 1;
+  font-size: 0.8rem;
   font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
   font-weight: 700;
   letter-spacing: 0.03em;
-}
-
-.enemy-card__rarity {
-  font-size: 0.7rem;
-  font-weight: 700;
-  font-family: 'Rajdhani', 'Trebuchet MS', sans-serif;
-}
-
-.enemy-card__hp {
-  font-size: 0.7rem;
-  color: rgb(247 247 247 / 72%);
-  font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+  padding-left: 0.4rem;
 }

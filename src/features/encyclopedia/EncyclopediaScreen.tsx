@@ -65,7 +65,7 @@ export function EncyclopediaScreen({ onExit }: Props) {
       {/* --- 左パネル: 敵詳細 --- */}
       <section className="encyclopedia-screen__left">
         <button type="button" className="encyclopedia-screen__back-btn" onClick={onExit}>
-          ← BACK
+          BACK
         </button>
         <EnemyDetailPanel enemy={selectedEnemy} />
       </section>
