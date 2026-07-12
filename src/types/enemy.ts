@@ -23,6 +23,9 @@ export type EnemyAction = {
   weights?: DiceSumWeights
 }
 
+/** 敵の分類 */
+export type EnemyKind = 'normal' | 'boss' | 'special'
+
 export type EnemyData = {
   name: string
   description: string
@@ -34,6 +37,7 @@ export type EnemyData = {
   exp: number
   gold: number
   rarity: Rarity
+  kind: EnemyKind
   /** Status effects the enemy starts the battle with */
   initialStatusEffects?: ActiveStatusEffect[]
 }

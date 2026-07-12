@@ -10,7 +10,7 @@ import type {
 } from '../../types/game'
 import { DAMAGE_TABLE } from '../../types/game'
 import { rollAllDice, placeEnemyActions, computeSums, createEnemyInstance } from './battleUtils'
-import { ENEMY_REGISTRY } from './data/enemies'
+import { ENEMY_REGISTRY } from '../../data/enemies'
 
 import { BattleMainPanel } from './components/BattleMainPanel'
 import { DiceSumPanel } from './components/DiceSumPanel'

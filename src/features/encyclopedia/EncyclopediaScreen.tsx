@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import type { EnemyData } from '../../types/game'
-import { ENEMY_REGISTRY } from '../battle/data/enemies'
+import { ENEMY_REGISTRY } from '../../data/enemies'
 import { EnemyDetailPanel } from './components/EnemyDetailPanel'
 import { EnemyListPanel } from './components/EnemyListPanel'
 import {
