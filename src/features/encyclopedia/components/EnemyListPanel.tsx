@@ -49,6 +49,7 @@ export function EnemyListPanel({
           <select
             className="enemy-list-panel__select"
             value={`${currentSortKey}_${currentSortOrder}`}
+            aria-label={`Sort: ${currentSortLabel}`}
             onChange={(e) => {
               const opt = sortOptions.find(
                 (o) => `${o.key}_${o.order}` === e.target.value,
